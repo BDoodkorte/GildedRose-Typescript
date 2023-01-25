@@ -50,12 +50,53 @@ describe('Gilded Rose', function () {
     });
 
 
-    // it should increase quality of Aged Brie by 2 if sellIn<0
+    // it should increase quality of Aged Brie by 2 if sellIn<=0
+    it('should increase quality of Aged Brie', function () {
+        const gildedRose = new GildedRose([new Item('Aged Brie', 0, 5)]);
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).to.equal(7);
+    });
+
+
     // it should increase quality of Backstage by 1 
+    it('should increase quality of Backstage by 1', function () {
+        const gildedRose = new GildedRose([new Item('Backstage passes to a TAFKAL80ETC concert', 15, 5)]);
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).to.equal(6);
+    });
+
+
     // it should increase quality of Backstage by 2 if sellIn <= 10 
+    it('should increase quality of Backstage by 2 if sellIn <= 10', function () {
+        const gildedRose = new GildedRose([new Item('Backstage passes to a TAFKAL80ETC concert', 8, 5)]);
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).to.equal(7);
+    });
+
+
     // it should increase quality of Backstage by 3 if sellIn <= 5 
+    it('should increase quality of Backstage by 3 if sellIn <= 5', function () {
+        const gildedRose = new GildedRose([new Item('Backstage passes to a TAFKAL80ETC concert', 3, 5)]);
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).to.equal(8);
+    });
+
+
     // it should reduce quality of Backstage to zero if sellIn <=0
+    it('should reduce quality of Backstage to zero if sellIn <=0', function () {
+        const gildedRose = new GildedRose([new Item('Backstage passes to a TAFKAL80ETC concert', 0, 5)]);
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).to.equal(0);
+    });
+
+
     // it should do nothing to quality of sellIn of Sulfuras
+    it('should do nothing to quality of sellIn of Sulfuras', function () {
+        const gildedRose = new GildedRose([new Item('Sulfuras, Hand of Ragnaros', 5, 80)]);
+        const items = gildedRose.updateQuality();
+        expect(items[0].sellIn).to.equal(5);
+        expect(items[0].quality).to.equal(80);
+    });
 
     /*
     it('should foo', function() {
