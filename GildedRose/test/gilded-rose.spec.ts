@@ -3,8 +3,6 @@ import { Item, GildedRose } from '../app/gilded-rose';
 
 describe('Gilded Rose', function () {
 
-    //insert all the unit tests
-
     // it should reduce quality of standard products
     it('should reduce quality of standard products', function () {
         const gildedRose = new GildedRose([new Item('Fruit', 3, 5), new Item('Vegetable', 6, 44)]);
