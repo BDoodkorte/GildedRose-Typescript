@@ -13,7 +13,7 @@ export class Item {
 }
 
 // array of special names
-export const specials = ['Aged Brie' ,'Backstage passes to a TAFKAL80ETC concert','Sulfuras, Hand of Ragnaros', 'Conjured Mana Cake'];
+export const specials = ['Aged Brie' ,'Backstage passes to a TAFKAL80ETC concert','Sulfuras, Hand of Ragnaros'];
 
 export class GildedRose {
     items: Array<Item>;
@@ -24,17 +24,17 @@ export class GildedRose {
 
 // Suggestions for refactoring:
 // 1. Write a function for each special and normal item and import them here 
-
+// 2. use a case break system to implement the function
 
 
     updateQuality() {
         for (let i = 0; i < this.items.length; i++) {
 
-            if (this.items[i].name != specials[0] && this.items[i].name != specials[1] && this.items[i].name != specials[2] && this.items[i].name != specials[3]) {
+            if (this.items[i].name != specials[0] && this.items[i].name != specials[1] && this.items[i].name != specials[2] && /Conjured.+/.test(this.items[i].name) === false) {
                 if (this.items[i].quality > 0) {
                     this.items[i].quality--
                 }
-            } else if (this.items[i].name === specials[3]){
+            } else if (/Conjured.+/.test(this.items[i].name) === true){
                 this.items[i].quality -=2
             }
             else {
@@ -57,9 +57,9 @@ export class GildedRose {
                 if (this.items[i].name != specials[0]) {
                     if (this.items[i].name != specials[1]) {
                         if (this.items[i].quality > 0) {
-                            if (this.items[i].name != specials[2] && this.items[i].name != specials[3]) {
+                            if (this.items[i].name != specials[2] && /Conjured.+/.test(this.items[i].name) === false) {
                                 this.items[i].quality--
-                            } else if (this.items[i].name === specials[3]){
+                            } else if (/Conjured.+/.test(this.items[i].name) === true){
                                 this.items[i].quality -= 2
                             }
                         }
